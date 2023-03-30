@@ -1,24 +1,45 @@
-# CA216 Operating Systems: myshell
+#include <signal.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-## Introduction
+#include "commands.h"
+#include "execute.h"
+#include "fileio.h"
+#include "input.h"
 
-This is the starter repository for the _ca216 Operating Systems_ project entitled `myshell` and which you must complete individually.
+#define MAX_LEN 128
 
-## What you need to do
+int main(int argc, char* argv[]) {
+    char* pwd;
+    char *line;
 
+    char pathShell[MAX_LEN];
+    getcwd(pathShell, sizeof(pathShell));
+    setenv("SHELL_ROOT", pathShell, 1);
+    setenv("MAN_README", strcat(pathShell, "/../manual/readme"), 1);
 
-You should follow the instructions below:
+    signal(SIGINT, signal_handler);
+    if (argc > 1) {
+        read_file(argv[1]); // take input from file
+    } else {
+        while (true) {
+            pwd = getenv("PWD");
+            fprintf(stdout, "~%s$ ", pwd);  // display current directory
+            line = read_input();     // take input from command line
+            if (*line == '\n') { continue; }
+            check_input_output(line);
+        }
+    }
+    free(pwd);
+    free(line);
+    return 0;
+}
 
-1. fork (do not clone) this repository.  Once you have forked it, make your own repository private and add both me (Graham Healy - @healygr) and Wandri Jooste (@joostew2) as "maintainer".
-2. add all your source files to the `src` directory.
-3. Add your files relating to the manual/help command to the `manual` directory.
-4. Your `makefile` should build the binary and place it in the `bin` directory.
+/*
 
-## Other notes
-There are supporting exercises to help you with the project.  You will find them all under  [Lab04/05 on the Loop CA216 Site](https://loop.dcu.ie/mod/book/view.php?id=2054177).  Use Git regularly and commit versions of your code often.
-
-
-## Declaration of non-plagiarism
 Name: Ethan Kavanagh
 
 Student Number: 21344873
@@ -35,3 +56,5 @@ which I now submit for assessment, is entirely my own work and has not been take
 others save and to the extent that such work has been cited and acknowledged within the text of my
 work. I have used the DCU library referencing guidelines and/or the appropriate referencing system
 recommended in the assignment guidelines and/or programme documentation.
+
+*/

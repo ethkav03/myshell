@@ -1,0 +1,98 @@
+MYSHELL(1)                  General Commands Manual                 MYSHELL(1)
+
+NAME
+
+          myshell
+
+SYNOPSIS
+
+          myshell [command | file]
+
+DESCRIPTION
+
+          Myshell takes input from command line and executes those commands/processes.
+
+ARGUMENTS
+
+          Myshell is executed with: ./myshell
+          An optional batch file with commands in it is possible with: ./myshell batchfile
+
+INVOCATION
+
+          Myshell prompts user for imput if no file is provided and executes the provided commands.
+
+USAGE
+
+          For user input run ./myshell with no additional arguments to manually enter
+          commands and execute them. Or supply a batchfile and have the commands
+          execute automatically.
+
+COMMANDS
+
+          Here is a list of the built-in commands and thier functions.
+
+	      cd              Allows user to change to specified directory. If no directory is
+                          supplied it displays the current directory.
+            clr             Clears the screen.
+            dir             Lists all contents of current directory.
+            environ         Lists all the environment variables.
+            echo            Prints provided statement to the command line.
+            help            Displays the man page.
+            pause           Pauses the shell and waits for enter key to be pressed.
+            quit            Exits the shell.
+
+ENVIRONMENT
+
+          An environment variable's value is set outside of the program using functionality
+          that is often provided by the operating system or a microservice. Any number of
+          environment variables may be created and made accessible for use at one time; each
+          environment variable consists of a name/value pair. 
+
+I/O REDIRECTION
+
+          I/O Redirection is a very useful feature available
+          in myshell. The following is an example of how to use I/O Redirection.
+
+                < filename    input from file               (command) < (input file)
+                > filename    output truncated to file      (command) > (output file)
+                >> filename   output appended to file       (command) >> (output file)
+
+          Can also combine input and output. For example:
+
+                (command) < (input file) >> (outputfile)
+
+BACKGROUND AND FOREGROUND PROCCESSES
+
+          When a foreground process is executed the shell waits for the process to
+          complete before prompting the user again.
+
+          Background processes are executed, and user is instantly prompted for input
+          again. The process continues to run in background until it is complete.
+          - Background process is executed by adding '&' add end of line.
+
+REFERENCES
+            
+            Kerrick, M. (2010) The Linux Programming Interface. 1st Edition. Place of publication:  No Starch Press.
+            Silberschatz, A., Galvin, PB. and Gagne, G (2018) Operating Systems Concepts. 10th Edition. Place of publication: Wiley.
+            Kernighan, BW. and Ritchie, DM. (1988) The C Programming Language. 2nd Edition. Place of publication: Pearson.
+            
+            BASH and ZSH man Pages.		
+
+STATEMENT OF NON-PLAGIARISM
+
+          Name: Ethan Kavanagh
+
+          Student Number: 21344873
+
+          Acknowledgement of the DCU Academic Integrity Policy:
+          I understand that the University regards breaches of academic integrity and plagiarism as grave 
+          and serious. I have read and understood the DCU Academic Integrity and Plagiarism Policy. I accept
+          the penalties that may be imposed should I engage in practice or practices that breach this policy. 
+          I have identified and included the source of all facts, ideas, opinions and viewpoints of others
+          in the assignment references. Direct quotations, paraphrasing, discussion of ideas from books,
+          journal articles, internet sources, module text, or any other source whatsoever are acknowledged
+          and the sources cited are identified in the assignment references. I declare that this material,
+          which I now submit for assessment, is entirely my own work and has not been taken from the work of
+          others save and to the extent that such work has been cited and acknowledged within the text of my
+          work. I have used the DCU library referencing guidelines and/or the appropriate referencing system
+          recommended in the assignment guidelines and/or programme documentation.
